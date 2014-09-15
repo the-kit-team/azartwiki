@@ -16,6 +16,7 @@ end
 group :test do
   gem 'simplecov', require: false
   gem 'rubocop',   require: false
+  gem 'rubocop-rspec'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
@@ -27,6 +28,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller', platform: :mri_21
   gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
 end
 
 group :development, :test do
@@ -52,4 +54,3 @@ group :production do
   gem 'pg'
   gem 'unicorn'
 end
-
