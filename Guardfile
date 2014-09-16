@@ -19,7 +19,7 @@ guard :migrate do
   watch('db/seeds.rb')
 end
 
-guard :rspec, cmd: 'bin/rspec -f html -o ./tmp/spec_results.html' do
+guard :rspec, cmd: 'bin/rspec' do
   watch(/^spec\/.+_spec\.rb$/)        { 'spec' }
   watch('spec/spec_helper.rb')        { 'spec' }
   watch(%r{^spec/support/(.+)\.rb$/}) { 'spec' }
