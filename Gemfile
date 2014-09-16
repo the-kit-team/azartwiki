@@ -3,9 +3,8 @@ ruby '2.1.2'
 
 gem 'rails', '4.2.0.beta1'
 
-gem 'slim-rails'          # patched
-# gem 'haml-rails'        # deprecated
-# gem 'dynamic_form'      # deprecated
+gem 'haml-rails'
+gem 'dynamic_form'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails-html-sanitizer', '~> 1.0'
 
@@ -15,31 +14,31 @@ group :assets do
 end
 
 group :test do
-  gem 'factory_girl_rails' # patched
+  gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
-  # gem 'capybara'         # deprecated
+  gem 'capybara'
 end
 
 group :development do
-  gem 'simplecov', require: false
-  gem 'rubocop',   require: false
-  gem 'rubocop-rspec'
-  gem 'better_errors'
-  gem 'binding_of_caller', platform: :mri_21
-  gem 'guard-rspec', require: false
-  gem 'guard-rubocop'
+  gem 'simplecov',     require: false
+  gem 'rubocop',       require: false
+  gem 'rubocop-rspec', require: false
+
+  %w(rspec rubocop bundler livereload migrate shell).each do |b|
+    gem "guard-#{b}", require: false
+  end
 end
 
 group :development, :test do
   gem 'sqlite3'
-  # gem 'web-console', '~> 2.0.0.beta2' # deprecated
+  gem 'web-console', '~> 2.0.0.beta2'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'pry-rails'               # patched
-  # gem 'byebug'                # deprecated
-  gem 'rspec-rails', '~> 3.0.0'
-  gem 'rspec-activemodel-mocks' # patched
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :production, :development do
