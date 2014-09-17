@@ -24,6 +24,7 @@ group :development do
   gem 'simplecov',     require: false
   gem 'rubocop',       require: false
   gem 'rubocop-rspec', require: false
+  gem 'rack-livereload'
 
   %w(rspec rubocop bundler livereload migrate shell).each do |b|
     gem "guard-#{b}", require: false
