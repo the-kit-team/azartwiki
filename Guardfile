@@ -19,12 +19,13 @@ guard :migrate do
   watch('db/seeds.rb')
 end
 
-guard :rspec, cmd: 'bin/rspec' do
+guard :rspec, cmd: 'COVERAGE=true bin/rspec' do
   watch(/^spec\/.+_spec\.rb$/)        { 'spec' }
   watch('spec/spec_helper.rb')        { 'spec' }
   watch(%r{^spec/support/(.+)\.rb$/}) { 'spec' }
 
   # Rails
+  watch('app/controllers/application_controller.rb') { 'spec' }
   watch('config/routes.rb')           { 'spec/routing' }
   watch(/^app\/(.+)\.rb$/)            { |m| "spec/#{m[1]}_spec.rb" }
   watch(/^app\/(.*)(\.erb|\.haml)$/)  { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }

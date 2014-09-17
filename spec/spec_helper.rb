@@ -11,8 +11,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
-  # config.include FactoryGirl::Syntax::Methods
-  # config.include Capybara::DSL
+  config.include FactoryGirl::Syntax::Methods
+  config.include Capybara::DSL
 
   config.raise_errors_for_deprecations!
 
