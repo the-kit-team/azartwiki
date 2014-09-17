@@ -56,4 +56,8 @@ end
 
 guard :shell do
   watch(/.+/) { `git status -s` }
+  watch(/.+/) do
+    coveraged = JSON.parse(IO.read 'tmp/coverage/.last_run.json')['result']['covered_percent']
+    sprintf 'Coveraged: %.1f%', coveraged
+  end
 end
