@@ -51,7 +51,7 @@ end
 guard :livereload do
   watch(%r{app/views/.+\.(erb|haml)$})
   watch(%r{app/helpers/.+\.rb})
-  watch(/public\/.+\.(css|js|html)/)
+  watch(/public\/.+\.(sass|scss|css|js|coffee|html)/)
   watch(%r{config/locales/.+\.yml})
   # Rails Assets Pipeline
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
@@ -60,12 +60,13 @@ end
 guard :shell do
   watch(/.+/) do |m|
     coveraged = JSON.parse(IO.read 'tmp/coverage/.last_run.json')['result']['covered_percent']
-    message = coveraged > 90 ? :success : :failure
+    message = coveraged > 90 ? :success : :failed
     n "#{m[0]} changed", sprintf('Middle coverage is %.1f%', coveraged), message
   end
   watch(/.+/) do
-    not_commited = `git status -s`.split("\n").count
-    message = not_commited < 5 ? :notify : :failure
-    n "Not committed changes: #{not_commited}", 'git status', message
+    not_commited_files = `git status -s`.split("\n").count
+    not_commited_lines = `git diff --shortstat`.scan(/\d+/)[1..2].map(&:to_i).inject(:+)
+    message = not_commited_files < 10 && not_commited_lines < 60 ? :notify : :failed
+    n "Not committed - files: #{not_commited_files}; lines: #{not_commited_lines}", 'git status', message
   end
 end
