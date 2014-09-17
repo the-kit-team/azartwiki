@@ -1,13 +1,41 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
+notification :terminal_notifier, subtitle: 'Azartwiki'
 
-guard :rubocop, all_on_start: false, cli: ['--format', 'clang', '--rails'] do
-  watch 'config.ru'
-  watch 'Rakefile'
-  watch 'Gemfile'
-  watch 'Guardfile'
-  watch(/.+\.(rb|rake)$/)
-  watch(/(?:.+\/)?\.rubocop\.yml$/) { |m| File.dirname(m[0]) }
+group :specs do
+  guard :rubocop, all_on_start: false, cli: ['--format', 'clang', '--rails'] do
+    watch 'config.ru'
+    watch 'Rakefile'
+    watch 'Gemfile'
+    watch 'Guardfile'
+    watch(/.+\.(rb|rake)$/)
+    watch(/(?:.+\/)?\.rubocop\.yml$/) { |m| File.dirname(m[0]) }
+  end
+
+  guard :rspec, cmd: 'COVERAGE=true bin/spring rspec' do
+    watch(/^spec\/.+_spec\.rb$/)        { 'spec' }
+    watch('spec/spec_helper.rb')        { 'spec' }
+    watch(%r{^spec/support/(.+)\.rb$/}) { 'spec' }
+
+    # Rails
+    watch('app/controllers/application_controller.rb') { 'spec' }
+    watch('config/routes.rb')           { 'spec/routing' }
+    watch(/^app\/(.+)\.rb$/)            { |m| "spec/#{m[1]}_spec.rb" }
+    watch(/^app\/(.*)(\.erb|\.haml)$/)  { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
+    watch(%r{^app/controllers/(.+)_(controller)\.rb$}) do |m|
+      [
+        "spec/routing/#{m[1]}_routing_spec.rb",
+        "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
+        "spec/acceptance/#{m[1]}_spec.rb"
+      ]
+    end
+
+    # FactoryGirl
+    watch('spec/factories.rb') { 'spec' }
+
+    # Capybara features specs
+    watch(%r{^app/views/(.+)/.*\.(erb|haml)$}) { |m| "spec/features/#{m[1]}_spec.rb" }
+  end
 end
 
 guard :bundler do
@@ -17,31 +45,6 @@ end
 guard :migrate do
   watch(%r{^db/migrate/(\d+).+\.rb})
   watch('db/seeds.rb')
-end
-
-guard :rspec, cmd: 'COVERAGE=true bin/rspec' do
-  watch(/^spec\/.+_spec\.rb$/)        { 'spec' }
-  watch('spec/spec_helper.rb')        { 'spec' }
-  watch(%r{^spec/support/(.+)\.rb$/}) { 'spec' }
-
-  # Rails
-  watch('app/controllers/application_controller.rb') { 'spec' }
-  watch('config/routes.rb')           { 'spec/routing' }
-  watch(/^app\/(.+)\.rb$/)            { |m| "spec/#{m[1]}_spec.rb" }
-  watch(/^app\/(.*)(\.erb|\.haml)$/)  { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
-  watch(%r{^app/controllers/(.+)_(controller)\.rb$}) do |m|
-    [
-      "spec/routing/#{m[1]}_routing_spec.rb",
-      "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
-      "spec/acceptance/#{m[1]}_spec.rb"
-    ]
-  end
-
-  # FactoryGirl
-  watch('spec/factories.rb') { 'spec' }
-
-  # Capybara features specs
-  watch(%r{^app/views/(.+)/.*\.(erb|haml)$}) { |m| "spec/features/#{m[1]}_spec.rb" }
 end
 
 # Update brawser page if view updated
@@ -55,9 +58,13 @@ guard :livereload do
 end
 
 guard :shell do
-  watch(/.+/) { `git status -s` }
-  watch(/.+/) do
+  watch(/.+/) do |m|
     coveraged = JSON.parse(IO.read 'tmp/coverage/.last_run.json')['result']['covered_percent']
-    sprintf 'Coveraged: %.1f%', coveraged
+    message = coveraged > 90 ? :success : :failure
+    n "#{m[0]} changed", sprintf('Middle coverage is %.1f%', coveraged), message
+  end
+  watch(/.+/) do
+    not_commited = `git status -s`.split("\n").count
+    n "Not committed changes: #{not_commited}", 'git status', :notify
   end
 end

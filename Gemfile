@@ -25,6 +25,7 @@ group :development do
   gem 'rubocop',       require: false
   gem 'rubocop-rspec', require: false
   gem 'rack-livereload'
+  gem 'terminal-notifier-guard'
 
   %w(rspec rubocop bundler livereload migrate shell).each do |b|
     gem "guard-#{b}", require: false
