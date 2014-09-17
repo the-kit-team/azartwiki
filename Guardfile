@@ -65,6 +65,7 @@ guard :shell do
   end
   watch(/.+/) do
     not_commited = `git status -s`.split("\n").count
-    n "Not committed changes: #{not_commited}", 'git status', :notify
+    message = not_commited < 5 ? :notify : :failure
+    n "Not committed changes: #{not_commited}", 'git status', message
   end
 end
