@@ -4,6 +4,12 @@
 
 require: rubocop-rspec
 
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - bin/**
+    - db/schema.rb
+
 Style/Encoding:
   Enabled: false
 
@@ -17,7 +23,3 @@ RSpec/DescribeClass:
 Documentation:
   Enabled: false
 
-AllCops:
-  RunRailsCops: true
-  Exclude:
-    - bin/**
