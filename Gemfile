@@ -7,6 +7,7 @@ gem 'haml-rails'
 gem 'dynamic_form'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails-html-sanitizer', '~> 1.0'
+gem 'bootstrap-sass', '~> 3.2.0'
 
 group :assets do
   gem 'sass-rails', '~> 5.0.0.beta1'
