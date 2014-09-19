@@ -51,10 +51,10 @@ end
 guard :livereload do
   watch(%r{app/views/.+\.(erb|haml)$})
   watch(%r{app/helpers/.+\.rb})
-  watch(/public\/.+\.(sass|scss|css|js|coffee|html)/)
+  watch(/public\/.+\.(css|js|html)/)
   watch(%r{config/locales/.+\.yml})
   # Rails Assets Pipeline
-  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
+  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg|sass|scss|coffee))).*}) { |m| "/assets/#{m[3]}" }
 end
 
 guard :shell do
