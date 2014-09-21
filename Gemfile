@@ -9,6 +9,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootsy'
+gem 'turbolinks'
+gem 'jquery-rails'
 
 group :assets do
   gem 'sass-rails', '~> 5.0.0.beta1'
@@ -47,8 +49,6 @@ end
 
 group :production, :development do
   gem 'uglifier', '>= 1.3.0'
-  gem 'turbolinks'
-  gem 'jquery-rails'
 end
 
 group :production do

@@ -6,9 +6,14 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolink-track'  => true,      async: true
     = javascript_include_tag 'application',               'data-turbolinks-track' => true,      async: true
     = csrf_meta_tags
-    = render 'application/meta_data'
+    = render 'meta_data'
+    = render 'shim'
   %body
+    = render 'header'
+
     - flash.each do |key, value|
       = content_tag :p, value, id: key
 
     = yield
+
+    = render 'footer'

@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: Hello world
+  application:
+    meta_data:
+      default_meta_description: Azartwiki
+      default_meta_keywords: Azartwiki
+  layouts:
+    application:
+      default_page_title: Azartwiki

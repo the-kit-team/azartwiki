@@ -49,7 +49,7 @@ end
 
 # Update brawser page if view updated
 guard :livereload do
-  watch(%r{app/views/.+\.(erb|haml)$})
+  watch(%r{app/(views/.+\.(erb|haml))$}) { |m| m[1] }
   watch(%r{app/helpers/.+\.rb})
   watch(/public\/.+\.(css|js|html)/)
   watch(%r{config/locales/.+\.yml})
@@ -59,6 +59,7 @@ end
 
 guard :shell do
   watch(/.+/) do |m|
+    require 'json'
     coveraged = JSON.parse(IO.read 'tmp/coverage/.last_run.json')['result']['covered_percent']
     message = coveraged > 90 ? :success : :failed
     n "#{m[0]} changed", sprintf('Middle coverage is %.1f%', coveraged), message
