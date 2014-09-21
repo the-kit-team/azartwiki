@@ -1,5 +1,47 @@
-# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
 #
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-agent: *
 # Disallow: /
+
+Host: azartwiki.com
+
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: */new$
+Disallow: */edit$
+Sitemap: http://azartwiki.com/sitemap1.xml.gz
+Sitemap: http://azartwiki.com/sitemap_index.xml.gz
+
+User-agent: Yandex
+Allow: /
+Disallow: /login
+Disallow: */new$
+Disallow: */edit$
+Sitemap: http://azartwiki.com/sitemap1.xml.gz
+Sitemap: http://azartwiki.com/sitemap_index.xml.gz
+
+User-agent: googlebot
+Allow: /
+Disallow: /login
+Disallow: */new$
+Disallow: */edit$
+Sitemap: http://azartwiki.com/sitemap1.xml.gz
+Sitemap: http://azartwiki.com/sitemap_index.xml.gz
+
+User-agent: StackRambler
+Allow: /
+Disallow: /login
+Disallow: */new$
+Disallow: */edit$
+Sitemap: http://azartwiki.com/sitemap1.xml.gz
+Sitemap: http://azartwiki.com/sitemap_index.xml.gz
+
+User-agent: Mail.Ru
+Allow: /
+Disallow: /login
+Disallow: */new$
+Disallow: */edit$
+Sitemap: http://azartwiki.com/sitemap1.xml.gz
+Sitemap: http://azartwiki.com/sitemap_index.xml.gz
