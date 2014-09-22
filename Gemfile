@@ -9,8 +9,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootsy'
-gem 'turbolinks'
-gem 'jquery-rails'
+gem 'sitemap_generator'
 
 group :assets do
   gem 'sass-rails', '~> 5.0.0.beta1'
@@ -44,17 +43,16 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.1.0'
-  gem 'rspec-activemodel-mocks'
 end
 
 group :production, :development do
+  gem 'turbolinks'
+  gem 'jquery-rails'
   gem 'uglifier', '>= 1.3.0'
 end
 
 group :production do
-  gem 'sitemap_generator'
-  gem 'carrierwave'
-  gem 'rails_12factor'
   gem 'pg'
+  gem 'carrierwave'
   gem 'unicorn'
 end
