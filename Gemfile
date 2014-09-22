@@ -55,4 +55,5 @@ group :production do
   gem 'pg'
   gem 'carrierwave'
   gem 'unicorn'
+  gem 'rails_12factor'
 end
