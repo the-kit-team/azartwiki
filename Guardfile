@@ -49,12 +49,12 @@ end
 
 # Update brawser page if view updated
 guard :livereload do
-  watch(%r{app/(views/.+\.(erb|haml))$}) { |m| m[1] }
+  watch(%r{app(/views/.+\.(erb|haml))$}) { |m| m[1] }
   watch(%r{app/helpers/.+\.rb})
   watch(/public\/.+\.(css|js|html)/)
   watch(%r{config/locales/.+\.yml})
   # Rails Assets Pipeline
-  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg|sass|scss|coffee))).*}) { |m| "/assets/#{m[3]}" }
+  watch(%r{(app|vendor)(/assets/\w+/.+\.(css|js|html|png|jpg).*)}) { |m| m[2] }
 end
 
 guard :shell do
@@ -66,7 +66,11 @@ guard :shell do
   end
   watch(/.+/) do
     not_commited_files = `git status -s`.split("\n").count
-    not_commited_lines = `git diff --shortstat`.scan(/\d+/)[1..2].map(&:to_i).inject(:+)
+    begin
+      not_commited_lines = `git diff --shortstat`.scan(/\d+/)[1..2].map(&:to_i).inject(:+)
+    rescue
+      not_commited_lines = nil
+    end
     message = not_commited_files < 10 && not_commited_lines < 60 ? :notify : :failed
     n "Not committed - files: #{not_commited_files}; lines: #{not_commited_lines}", 'git status', message
   end
