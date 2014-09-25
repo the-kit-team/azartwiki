@@ -9,7 +9,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootsy'
-gem 'sitemap_generator'
 
 group :assets do
   gem 'sass-rails', '~> 5.0.0.beta1'
@@ -53,7 +52,8 @@ end
 
 group :production do
   gem 'pg'
-  gem 'carrierwave'
   gem 'unicorn'
   gem 'rails_12factor'
+  gem 'sitemap_generator'
+  gem 'fog'
 end
