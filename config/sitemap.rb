@@ -12,5 +12,5 @@ SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 SitemapGenerator::Sitemap.ping_search_engines(yandex: 'http://webmaster.yandex.ru/sitemaptest.xml?host=azartwiki.com')
 
 SitemapGenerator::Sitemap.create do
-  add root_path, lastmod: Date.today, expires: 1.days.from_now
+  add root_path, lastmod: Date.today
 end
