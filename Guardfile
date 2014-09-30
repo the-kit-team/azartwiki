@@ -69,7 +69,7 @@ guard :shell do
     begin
       not_commited_lines = `git diff --shortstat`.scan(/\d+/)[1..2].map(&:to_i).inject(:+)
     rescue
-      not_commited_lines = nil
+      not_commited_lines = 0
     end
     message = not_commited_files < 10 && not_commited_lines < 60 ? :notify : :failed
     n "Not committed - files: #{not_commited_files}; lines: #{not_commited_lines}", 'git status', message
