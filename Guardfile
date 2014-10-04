@@ -66,10 +66,12 @@ guard :shell do
   end
   watch(/.+/) do
     not_commited_files = `git status -s`.split("\n").count
-    not_commited_lines = `git diff --shortstat`
-    not_commited_lines = not_commited_lines ? not_commited_lines.scan(/\d+/).last(2).map(&:to_i).inject(:+) : 0
-    type = not_commited_files < 10 && not_commited_lines < 60 ? :notify : :failed
-    message = "Not committed - files: #{not_commited_files}; lines: #{not_commited_lines}"
-    n message, 'git status', type: type
+    begin
+      not_commited_lines = `git diff --shortstat`.scan(/\d+/)[1..2].map(&:to_i).inject(:+)
+    rescue
+      not_commited_lines = 0
+    end
+    message = not_commited_files < 10 && not_commited_lines < 60 ? :notify : :failed
+    n "Not committed - files: #{not_commited_files}; lines: #{not_commited_lines}", 'git status', message
   end
 end
