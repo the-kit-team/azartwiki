@@ -36,7 +36,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'web-console', '~> 2.0.0.beta2'
+  gem 'web-console', '~> 2.0.0.beta4'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'pry-rails'
