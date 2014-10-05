@@ -8,6 +8,7 @@
     = csrf_meta_tags
     = render 'meta_data'
     = render 'shim'
+    = render 'counters/google' if Rails.env.production?
   %body
     = render 'header'
 
