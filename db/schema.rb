@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140919131605) do
+ActiveRecord::Schema.define(version: 20141011195143) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -26,5 +26,14 @@ ActiveRecord::Schema.define(version: 20140919131605) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string "name",                                    null: false
+    t.string "password_digest",                         null: false
+    t.string "role",            default: "Role::Guest", null: false
+  end
+
+  add_index "users", ["name"], name: "index_users_on_name"
+  add_index "users", ["role"], name: "index_users_on_role"
 
 end
