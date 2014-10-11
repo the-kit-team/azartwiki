@@ -7,9 +7,10 @@
     = javascript_include_tag 'application',               'data-turbolinks-track' => true,      async: true
     = csrf_meta_tags
     = render 'meta_data'
-    = render 'shim'
-    = render 'counters/google' if Rails.env.production?
   %body
+    = render 'counters/google' if Rails.env.production?
+    = render 'counters/yandex' if Rails.env.production?
+
     = render 'header'
 
     - flash.each do |key, value|
