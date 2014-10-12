@@ -81,7 +81,6 @@ GEM
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    dynamic_form (1.1.4)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -287,6 +286,9 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
+    simple_form (3.0.2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -344,7 +346,6 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
-  dynamic_form
   factory_girl_rails
   fog
   guard-bundler
@@ -367,6 +368,7 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (~> 5.0.0.beta1)
   shoulda-matchers
+  simple_form
   simplecov
   sitemap_generator
   spring
