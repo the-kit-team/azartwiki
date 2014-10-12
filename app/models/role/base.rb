@@ -7,7 +7,7 @@ module Role
     end
 
     def can?(controller, action)
-      @controller, @action = controller, action
+      @controller, @action = controller.to_sym, action.to_sym
 
       can_do?
     end
@@ -15,9 +15,7 @@ module Role
     private
 
     def can_do?
-      return false unless permissions
-
-      actions = permissions[@controller]
+      actions = permissions.try :[], @controller
 
       return false if actions.blank?
       return true  if actions == :all

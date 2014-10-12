@@ -2,7 +2,8 @@ module Role
   class Guest < Base
     private def permissions
       {
-        root: [:index]
+        home: [:index],
+        sessions: [:new, :create]
       }
     end
   end

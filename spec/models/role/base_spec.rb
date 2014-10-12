@@ -4,9 +4,9 @@ describe Role::Base do
   end
 
   describe '#can?' do
-    { guest: { controller: :root, action: :index },
+    { guest: { controller: :home, action: :index },
       admin: { controller: :user, action: :create },
-      manager: { controller: :root, action: :index }
+      manager: { controller: :home, action: :index }
     }.each do |role, permit|
       it "#{role} #{permit[:controller]} #{permit[:action]}" do
         user = "Role::#{role.capitalize}".constantize.new

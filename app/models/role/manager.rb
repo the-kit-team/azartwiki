@@ -2,9 +2,11 @@ module Role
   class Manager < Base
     private def permissions
       {
-        root: :all,
+        home: :all,
         images: :all,
-        image_galleries: :all
+        image_galleries: :all,
+        bootsy: :all,
+        sessions: :all
       }
     end
   end
