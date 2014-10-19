@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011195143) do
+ActiveRecord::Schema.define(version: 20141012142616) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -35,5 +35,12 @@ ActiveRecord::Schema.define(version: 20141011195143) do
 
   add_index "users", ["name"], name: "index_users_on_name"
   add_index "users", ["role"], name: "index_users_on_role"
+
+  create_table "wiki", force: true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

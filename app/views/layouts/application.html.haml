@@ -6,16 +6,16 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolink-track'  => true,      async: true
     = javascript_include_tag 'application',               'data-turbolinks-track' => true,      async: true
     = csrf_meta_tags
-    = render 'meta_data'
+    = render 'application/meta_data'
   %body
     = render 'counters/google' if Rails.env.production?
     = render 'counters/yandex' if Rails.env.production?
 
-    = render 'header'
+    = render 'application/header'
 
     - flash.each do |key, value|
       = content_tag :p, value, id: key
 
     = yield
 
-    = render 'footer'
+    = render 'application/footer'

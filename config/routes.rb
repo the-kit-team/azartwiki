@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :wiki
+
   root to: 'home#index', as: 'root'
 
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'

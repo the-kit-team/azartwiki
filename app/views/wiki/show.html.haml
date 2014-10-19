@@ -1,0 +1,10 @@
+%p
+  %b Title:
+  = @wiki.title
+%p
+  %b Text:
+  = @wiki.text
+
+= link_to 'Edit', edit_wiki_path(@wiki)
+\|
+= link_to 'Back', wiki_index_path

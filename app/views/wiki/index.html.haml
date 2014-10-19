@@ -1,0 +1,21 @@
+%h1 Listing wiki
+
+%table
+  %tr
+    %th Title
+    %th Text
+    %th
+    %th
+    %th
+
+  - @wiki.each do |wiki|
+    %tr
+      %td= wiki.title
+      %td= wiki.text
+      %td= link_to 'Show', wiki
+      %td= link_to 'Edit', edit_wiki_path(wiki)
+      %td= link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Wiki', new_wiki_path

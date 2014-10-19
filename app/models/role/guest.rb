@@ -3,7 +3,8 @@ module Role
     private def permissions
       {
         home: [:index],
-        sessions: [:new, :create]
+        sessions: [:new, :create],
+        wiki: [:index, :show]
       }
     end
   end

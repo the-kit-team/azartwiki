@@ -10,6 +10,9 @@ AllCops:
     - bin/**
     - db/schema.rb
 
+Documentation:
+  Enabled: false
+
 Style/Encoding:
   Enabled: false
 
@@ -20,6 +23,7 @@ RSpec/DescribeClass:
   Exclude:
     - spec/views/**/*
 
-Documentation:
-  Enabled: false
+RSpec/FilePath:
+  Exclude:
+    - spec/routing/**/*
 

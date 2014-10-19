@@ -20,6 +20,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
   gem 'capybara'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :development do

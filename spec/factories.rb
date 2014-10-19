@@ -13,4 +13,9 @@ FactoryGirl.define do
     factory(:admin)   { role 'Role::Admin'   }
     factory(:manager) { role 'Role::Manager' }
   end
+
+  factory :wiki do
+    title { |n| "Wiki##{n}" }
+    text
+  end
 end
