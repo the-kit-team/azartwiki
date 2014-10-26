@@ -28,3 +28,12 @@ en:
   layouts:
     application:
       default_page_title: Azartwiki
+  wiki:
+    index:
+      page_title: Wiki
+      meta_keywords: wiki
+      meta_description: wiki
+    show:
+      page_title: '%{title}'
+      meta_keywords: '%{keywords}'
+      meta_description: '%{description}'

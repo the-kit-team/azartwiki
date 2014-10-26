@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  sequence :text, aliases: [:description] do
+  sequence :text, aliases: [:description, :keywords] do
     ('A'..'z').to_a.*(10).sample(255).join
   end
   sequence(:name, aliases: [:person]) { |n| "John##{n}" }
@@ -17,5 +17,12 @@ FactoryGirl.define do
   factory :wiki do
     title { |n| "Wiki##{n}" }
     text
+
+    association :seo_metadata, strategy: :build
+  end
+
+  factory :seo_metadata do
+    keywords
+    description
   end
 end

@@ -52,6 +52,6 @@ class WikiController < ApplicationController
   end
 
   def wiki_params
-    params.require(:wiki).permit(:title, :text)
+    params.require(:wiki).permit(:title, :text, seo_metadata_attributes: [:keywords, :description])
   end
 end

@@ -88,13 +88,18 @@ describe WikiController do
 
     describe 'with valid params' do
       let(:new_attributes) do
-        { title: 'New title' }
+        { title: 'New title',
+          seo_metadata_attributes: {
+            keywords: 'new keywords',
+            description: 'new desc' } }
       end
 
       it 'updates the requested wiki' do
         expect do
           put :update, { id: wiki.to_param, wiki: new_attributes }, admin_session
         end.to change { wiki.reload.title }.to new_attributes[:title]
+        expect(wiki.reload.seo_metadata.keywords)
+          .to eq(new_attributes[:seo_metadata_attributes][:keywords])
       end
 
       it 'assigns the requested wiki as @wiki' do

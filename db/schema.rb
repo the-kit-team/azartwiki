@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012142616) do
+ActiveRecord::Schema.define(version: 20141019201751) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20141012142616) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "seo_metadata", force: true do |t|
+    t.integer  "wiki_id",     null: false
+    t.string   "keywords"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "seo_metadata", ["wiki_id"], name: "index_seo_metadata_on_wiki_id"
 
   create_table "users", force: true do |t|
     t.string "name",                                    null: false
