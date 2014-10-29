@@ -1,0 +1,2 @@
+describe Wiki do
+end

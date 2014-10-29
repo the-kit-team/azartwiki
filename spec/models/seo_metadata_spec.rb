@@ -1,0 +1,2 @@
+describe SeoMetadata do
+end

@@ -1,0 +1,12 @@
+= simple_form_for @wiki do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.simple_fields_for :seo_metadata do |seo_form|
+      = seo_form.input :keywords
+      = seo_form.input :description
+    = f.input :title
+    = f.input :text
+
+  .form-actions
+    = f.button :submit
