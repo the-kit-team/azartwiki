@@ -9,18 +9,19 @@
       %table.table.table-striped.table-bordered.table-hover
         %tr
           %th Title
-          %th Create at
-          %th
-          %th
-          %th
+          %th Created at
+          - if current_user.admin?
+            %th Actions
 
         - @wiki.each do |wiki|
           %tr
             %td= wiki.title
             %td= wiki.created_at.to_date
-            %td= link_to 'Show', wiki
-            %td= link_to 'Edit', edit_wiki_path(wiki)
-            %td= link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' }
+            - if current_user.admin?
+              %td
+                = link_to 'Show', wiki, class: 'btn btn-default'
+                = link_to 'Edit', edit_wiki_path(wiki), class: 'btn btn-info'
+                = link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
       %br
     .panel-footer
