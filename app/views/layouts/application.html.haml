@@ -14,8 +14,10 @@
     = render 'application/header'
 
     - flash.each do |key, value|
-      = content_tag :p, value, id: key
+      = content_tag :p, value, id: key, class: 'alert'
 
-    = yield
+    .container
+
+      = yield
 
     = render 'application/footer'

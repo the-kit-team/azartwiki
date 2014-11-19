@@ -12,7 +12,7 @@ class WikiController < ApplicationController
 
   # GET /wiki/new
   def new
-    @wiki = Wiki.new
+    @wiki = Wiki.new seo_metadata: SeoMetadata.new
   end
 
   # GET /wiki/1/edit
@@ -52,6 +52,6 @@ class WikiController < ApplicationController
   end
 
   def wiki_params
-    params.require(:wiki).permit(:title, :text, seo_metadata_attributes: [:keywords, :description])
+    params.require(:wiki).permit(:title, :text, :bootsy_image_gallery_id, seo_metadata_attributes: [:keywords, :description])
   end
 end

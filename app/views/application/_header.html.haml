@@ -1,1 +1,8 @@
 %header
+  %nav.navbar.navbar-default
+    .navbar-header
+      %a.navbar-brand AzartWiki
+    .collapse.navbar-collapse
+      - if current_user.admin?
+        %p.navbar-text.navbar-right.navbar-link
+          = link_to t('sign_out'), logout_url, method: :delete
