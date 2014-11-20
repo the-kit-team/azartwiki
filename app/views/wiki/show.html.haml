@@ -9,5 +9,6 @@
   .panel-body
     = raw @wiki.text
   .panel-footer
-    = link_to 'Edit', edit_wiki_path(@wiki), class: 'btn btn-info'
-    = link_to 'Back', wiki_index_path, class: 'btn btn-danger'
+    - if current_user.admin?
+      = link_to 'Edit', edit_wiki_path(@wiki), class: 'btn btn-info'
+      = link_to 'Back', wiki_index_path, class: 'btn btn-danger'

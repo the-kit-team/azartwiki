@@ -12,7 +12,7 @@ group :specs do
     watch(/(?:.+\/)?\.rubocop\.yml$/) { |m| File.dirname(m[0]) }
   end
 
-  guard :rspec, cmd: 'COVERAGE=true bin/spring rspec --tag focus' do
+  guard :rspec, cmd: 'COVERAGE=true bin/rspec --tag focus' do
     watch(/^spec\/.+_spec\.rb$/)        { 'spec' }
     watch('spec/spec_helper.rb')        { 'spec' }
     watch(%r{^spec/support/(.+)\.rb$/}) { 'spec' }

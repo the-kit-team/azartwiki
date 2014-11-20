@@ -1,7 +1,7 @@
 %header
   %nav.navbar.navbar-default
     .navbar-header
-      %a.navbar-brand AzartWiki
+      = link_to 'AzartWiki', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       - if current_user.admin?
         %p.navbar-text.navbar-right.navbar-link

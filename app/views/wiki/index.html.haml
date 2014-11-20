@@ -3,7 +3,7 @@
 - provide :meta_description, t('.meta_description')
 .row
   .panel.panel-default
-    .panel-heading 
+    .panel-heading
       %h3 Listing wiki
     .panel-body
       %table.table.table-striped.table-bordered.table-hover
@@ -15,7 +15,7 @@
 
         - @wiki.each do |wiki|
           %tr
-            %td= wiki.title
+            %td= link_to wiki.title, wiki
             %td= wiki.created_at.to_date
             - if current_user.admin?
               %td
@@ -25,4 +25,5 @@
 
       %br
     .panel-footer
-      = link_to 'Create new Wiki', new_wiki_path, class: 'btn btn-default'
+      - if current_user.admin?
+        = link_to 'Create new Wiki', new_wiki_path, class: 'btn btn-default'
