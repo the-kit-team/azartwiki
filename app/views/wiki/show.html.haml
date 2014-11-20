@@ -2,13 +2,12 @@
 - provide :meta_keywords,    t('.meta_keywords',    keywords:    @wiki.seo_metadata.keywords)
 - provide :meta_description, t('.meta_description', description: @wiki.seo_metadata.description)
 
-%p
-  %b Title:
-  = @wiki.title
-%p
-  %b Text:
-  = @wiki.text
-
-= link_to 'Edit', edit_wiki_path(@wiki)
-\|
-= link_to 'Back', wiki_index_path
+.panel.panel-default
+  .panel-heading
+    %h3
+      = @wiki.title
+  .panel-body
+    = raw @wiki.text
+  .panel-footer
+    = link_to 'Edit', edit_wiki_path(@wiki), class: 'btn btn-info'
+    = link_to 'Back', wiki_index_path, class: 'btn btn-danger'

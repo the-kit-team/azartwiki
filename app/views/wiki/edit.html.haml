@@ -1,7 +1,10 @@
-%h1 Editing wiki
+.panel.panel-default
+  .panel-heading
+    %h3 Editing wiki
+  
+  .panel-body
+    = raw render 'form'
 
-= render 'form'
-
-= link_to 'Show', @wiki
-\|
-= link_to 'Back', wiki_index_path
+  .panel-footer
+    = link_to 'Show', @wiki, class: 'btn btn-info'
+    = link_to 'Back', wiki_index_path, class: 'btn btn-danger'

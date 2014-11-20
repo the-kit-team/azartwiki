@@ -1,25 +1,28 @@
 - provide :page_title,       t('.page_title')
 - provide :meta_keywords,    t('.meta_keywords')
 - provide :meta_description, t('.meta_description')
+.row
+  .panel.panel-default
+    .panel-heading 
+      %h3 Listing wiki
+    .panel-body
+      %table.table.table-striped.table-bordered.table-hover
+        %tr
+          %th Title
+          %th Created at
+          - if current_user.admin?
+            %th Actions
 
-%h1 Listing wiki
+        - @wiki.each do |wiki|
+          %tr
+            %td= wiki.title
+            %td= wiki.created_at.to_date
+            - if current_user.admin?
+              %td
+                = link_to 'Show', wiki, class: 'btn btn-default'
+                = link_to 'Edit', edit_wiki_path(wiki), class: 'btn btn-info'
+                = link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
-%table
-  %tr
-    %th Title
-    %th Text
-    %th
-    %th
-    %th
-
-  - @wiki.each do |wiki|
-    %tr
-      %td= wiki.title
-      %td= wiki.text
-      %td= link_to 'Show', wiki
-      %td= link_to 'Edit', edit_wiki_path(wiki)
-      %td= link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Wiki', new_wiki_path
+      %br
+    .panel-footer
+      = link_to 'Create new Wiki', new_wiki_path, class: 'btn btn-default'

@@ -1,5 +1,8 @@
-%h1 New wiki
+.panel.panel-default
+  .panel-heading
+    %h3 New wiki
+  .panel-body
 
-= render 'form'
-
-= link_to 'Back', wiki_index_path
+    = render 'form'
+  .panel-footer
+    = link_to 'Back', wiki_index_path, class: 'btn btn-danger'
