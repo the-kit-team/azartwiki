@@ -14,9 +14,9 @@ describe 'wiki/show' do
   before { render template: 'wiki/show', layout: 'layouts/application' }
   subject(:page) { Capybara.string rendered }
 
-  it 'renders attributes in <p>' do
-    is_expected.to have_selector 'p', text:  'Title'
-    is_expected.to have_selector 'p', text: 'MyText'
+  it 'renders attributes in <h3> and <div>' do
+    is_expected.to have_selector 'h3',  text: 'MyString'
+    is_expected.to have_selector 'div', text: 'MyText'
   end
 
   context 'with metadata' do
