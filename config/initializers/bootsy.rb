@@ -54,5 +54,5 @@ Bootsy.setup do |config|
 
   # Store directory (inside 'public') for storage = :file
   # BE CAREFUL! Changing this may break previously uploaded file paths!
-  config.store_dir = 'bootsy'
+  config.store_dir = 'uploads'
 end
