@@ -23,19 +23,27 @@ class WikiController < ApplicationController
   def create
     @wiki = Wiki.new(wiki_params)
 
-    if @wiki.save
-      redirect_to @wiki, notice: 'Wiki was successfully created.'
-    else
+    if params[:preview_button]
       render :new
+    elsif params[:commit]
+      if @wiki.save
+        redirect_to @wiki, notice: 'Wiki was successfully created.'
+      else
+        render :new
+      end
     end
   end
 
   # PATCH/PUT /wiki/1
   def update
-    if @wiki.update(wiki_params)
-      redirect_to @wiki, notice: 'Wiki was successfully updated.'
-    else
-      render :edit
+    if params[:preview_button]
+      render :new
+    elsif params[:commit]
+      if @wiki.update(wiki_params)
+        redirect_to @wiki, notice: 'Wiki was successfully updated.'
+      else
+        render :edit
+      end
     end
   end
 

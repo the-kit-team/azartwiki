@@ -1,5 +1,14 @@
 = simple_form_for @wiki, class: 'form-horizontal' do |f|
   = f.error_notification
+
+  - if params[:preview_button]
+    .panel.panel-default
+      .panel-heading
+        %h3
+          = @wiki.title
+      .panel-body
+        = raw @wiki.text
+
   .form-controls
     = f.simple_fields_for :seo_metadata do |seo_form|
       = seo_form.input :keywords
@@ -8,4 +17,5 @@
     = f.input :text, as: :bootsy, input_html: {style: 'width: 650px; height: 300px;'}
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, 'Submit'
+    = f.button :submit, 'Preview', name: :preview_button
